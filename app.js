@@ -4,17 +4,9 @@ const cors = require("cors");
 const { errorHandler } = require("./helpers");
 const {
   routerAuth,
-  // routerUser,
-  // routerEvent,
-  // routerUpdateEvent,
-  // routerOwner,
-  // routerMessage,
-  // routerAdmin,
-  routerDevelopers,
-  routerCatalog,
-  routerSities,
-  routerCare,
-  routerOrder,
+  routerEvents,
+  routerPackage,
+  routerPackages,
 } = require("./routes/api");
 
 const app = express();
@@ -35,12 +27,8 @@ app.use("/uploads", express.static(`${__dirname}/images`));
 app.use("/uploads", express.static(`${__dirname}/images/avatars`));
 
 app.use("/api/auth", routerAuth);
-app.use("/api/cities", routerSities);
-app.use("/api/departments", routerDepartments);
-app.use("/api/catalog", routerCatalog);
-app.use("/api/care", routerCare);
-app.use("/api/order", routerOrder);
-app.use("/api/basket", routerBasket);
+app.use("/api/events", routerEvents);
+app.use("/api/package", routerPackages);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");
