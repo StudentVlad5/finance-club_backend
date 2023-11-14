@@ -2,91 +2,69 @@ const Joi = require("joi");
 const mongoose = require("mongoose");
 require("mongoose-type-email");
 require("mongoose-type-url");
+const { uuid } = require("uuidv4");
 
 const eventsValidationSchema = Joi.object({
-  // user_id: Joi.string().min(3).max(32).required(),
-  // basket: Joi.array().required(),
-  // totalAmount: Joi.string().min(1).max(32).required(),
-  // totalDiscount: Joi.string().min(1).max(32).required(),
-  // totalPayment: Joi.string().min(1).max(32).required(),
-  // delivery: Joi.array().required(),
-  // metodPayment: Joi.array().required(),
+  event_id: Joi.string().min(3).max(32).required(),
+  date: Joi.string().min(3).max(32).required(),
+  time: Joi.string().min(1).max(32).required(),
+  location: Joi.string().min(1).max(132).required(),
+  title: Joi.string().min(1).max(90).required(),
+  description: Joi.string().min(1).max(9999).required(),
+  plan: Joi.array().required(),
+  speakers: Joi.array().required(),
+  moderator: Joi.string().min(3).max(32).required(),
+  packages: Joi.array().required(),
+  image: Joi.string().min(1).max(90),
 });
 
 const EventsSchema = new mongoose.Schema(
   {
-    user_id: {
+    event_id: {
       type: String,
-      default: "not avtorization",
+      default: `${uuid}`,
     },
-    basket: {
-      type: Object,
-      required: [true, "Set basket order"],
+    date: {
+      type: String,
+      required: [true, "Set date"],
+    },
+    time: {
+      type: String,
+      required: [true, "Set time"],
+    },
+    location: {
+      type: String,
+      required: [true, "Set location"],
+    },
+    title: {
+      type: String,
+      required: [true, "Set title"],
+    },
+    description: {
+      type: String,
+      required: [true, "Set description"],
+    },
+    plan: {
+      type: Array,
+      required: [true, "Set plan"],
       default: {},
     },
-    totalAmount: {
-      type: Number,
-      required: [true, "Set totalAmount"],
-    },
-    totalDiscount: {
-      type: Number,
-      required: [true, "Set totalDiscount"],
-    },
-    totalPayment: {
-      type: Number,
-      required: [true, "Set totalPayment"],
-    },
-    currency: {
-      type: String,
-      required: [true, "Set totalPayment"],
-    },
-    deliveryOrder: {
-      type: Object,
-      required: [true, "Set delivery"],
+    speakers: {
+      type: Array,
+      required: [true, "Set speakers"],
       default: {},
     },
-    selectedPaymentOption: {
+    moderator: {
       type: String,
-      required: [true, "Set methodPayment"],
+      required: [true, "Set moderator"],
     },
-    name: {
-      type: String,
-      required: [true, "Set userName"],
+    packages: {
+      type: Array,
+      required: [true, "Set packages"],
     },
-    company: {
+    image: {
       type: String,
-      // required: [true, "Set company"],
-    },
-    city: {
-      type: String,
-      required: [true, "Set city"],
-    },
-    address1: {
-      type: String,
-      required: [true, "Set address1"],
-    },
-    address2: {
-      type: String,
-      // required: [true, "Set address2"],
-    },
-    state: {
-      type: String,
-      required: [true, "Set state"],
-    },
-    zipCode: {
-      type: String,
-      required: [true, "Set zipCode"],
-    },
-    phone: {
-      type: String,
-      required: [true, "Set phone"],
-    },
-    email: {
-      type: String,
-      required: [true, "Set email"],
-    },
-    comments: {
-      type: String,
+      default: "no picture",
     },
   },
   {
