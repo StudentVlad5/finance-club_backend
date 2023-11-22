@@ -1,13 +1,10 @@
-const express = require("express");
-const { events } = require("../../controllers");
-const ctrlWrapper = require("../../middleWares/ctrlWrapper");
+const express = require('express');
+const { events } = require('../../controllers');
+const ctrlWrapper = require('../../middleWares/ctrlWrapper');
 
-// const { addItemInBasket, getById, removeItemInBasket, updateItemInBasket } = events;
 const router = express.Router();
 
-// router.get("/:id/", ctrlWrapper(getById));
-// router.post("/", ctrlWrapper(addItemInBasket));
-// router.patch("/:id/", ctrlWrapper(removeItemInBasket));
-// router.post("/:id/", ctrlWrapper(updateItemInBasket));
+router.get('/', ctrlWrapper(events.getEvents));
+router.get('/:id/', ctrlWrapper(events.getById));
 
 module.exports = routerEvents = router;
