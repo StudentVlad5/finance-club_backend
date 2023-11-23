@@ -2,16 +2,16 @@ const {
   Users,
   userValidationSchema,
   userUpdateValidationSchema,
-} = require("./users");
-const { Packages, packagesValidationSchema } = require("./package");
-const { Events, eventsValidationSchema } = require("./events");
+} = require('./users');
+const { Packages, packagesValidationSchema } = require('./package');
+const { Events, eventsValidationSchema } = require('./events');
 
 module.exports = {
   Users,
   userValidationSchema,
   userUpdateValidationSchema,
-  Packages, 
+  Packages,
   packagesValidationSchema,
   Events,
-  eventsValidationSchema
+  eventsValidationSchema,
 };
