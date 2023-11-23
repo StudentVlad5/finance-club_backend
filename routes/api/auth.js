@@ -15,9 +15,9 @@ const {
 
 const router = express.Router();
 
-router.post('/login', ctrlWrapper(ctrl.signin));
+router.post('/signin', ctrlWrapper(ctrl.signin));
 router.post(
-  '/register',
+  '/signup',
   validation(userValidationSchema),
   ctrlWrapper(ctrl.signup)
 );
