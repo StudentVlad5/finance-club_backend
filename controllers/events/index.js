@@ -1,7 +1,13 @@
-const createEvent = require("./createEvents");
-const getById = require("./getById");
+const createEvent = require('./createEvents');
+const updateEvent = require('./updateEvents');
+const deleteEvent = require('./deleteEvent');
+const getEvents = require('./getEvents');
+const getById = require('./getById');
 
 module.exports = {
   createEvent,
-  getById
+  updateEvent,
+  deleteEvent,
+  getEvents,
+  getById,
 };

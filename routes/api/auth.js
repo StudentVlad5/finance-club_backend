@@ -15,9 +15,9 @@ const {
 
 const router = express.Router();
 
-router.post('/signin', ctrlWrapper(ctrl.signin));
+router.post('/login', ctrlWrapper(ctrl.signin));
 router.post(
-  '/signup',
+  '/register',
   validation(userValidationSchema),
   ctrlWrapper(ctrl.signup)
 );
@@ -26,13 +26,13 @@ router.post('/logout', ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.logout));
 router.post('/forgotPassword', ctrlWrapper(ctrl.forgotPassword));
 router.post('/changePassword', ctrlWrapper(ctrl.changePassword));
 // router.post(
-//   '/favorites/:id',
+//   '/events/:id',
 //   ctrlWrapper(authMiddleware),
 //   validateId,
 //   ctrlWrapper(ctrl.addFavorite)
 // );
 // router.delete(
-//   '/favorites/:id',
+//   '/packages/:id',
 //   ctrlWrapper(authMiddleware),
 //   validateId,
 //   ctrlWrapper(ctrl.deleteFavorite)
