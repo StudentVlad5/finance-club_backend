@@ -11,14 +11,15 @@ const { upload } = require('../../middleWares/uploadMiddleware');
 const {
   userValidationSchema,
   userUpdateValidationSchema,
+  userRegistationSchema,
 } = require('../../models');
 
 const router = express.Router();
 
 router.post('/login', ctrlWrapper(ctrl.signin));
 router.post(
-  '/register',
-  validation(userValidationSchema),
+  '/signup',
+  validation(userRegistationSchema),
   ctrlWrapper(ctrl.signup)
 );
 

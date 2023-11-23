@@ -4,6 +4,15 @@ const mongoose = require('mongoose');
 require('mongoose-type-email');
 require('mongoose-type-url');
 
+const userRegistationSchema = Joi.object({
+  name: Joi.string().min(3).max(32).required(),
+  surname: Joi.string().min(3).max(32),
+  email: Joi.string().email().required(),
+  phone: Joi.string().min(7).max(13).required(),
+  packages: Joi.string(),
+  company: Joi.string(),
+  position: Joi.string(),
+});
 const userValidationSchema = Joi.object({
   name: Joi.string().min(3).max(32).required(),
   surname: Joi.string().min(3).max(32),
@@ -48,7 +57,6 @@ const UsersSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Set password'],
     },
     phone: {
       type: String,
@@ -99,4 +107,4 @@ const UsersSchema = new mongoose.Schema(
 
 const Users = mongoose.model('users', UsersSchema);
 
-module.exports = { Users, userValidationSchema, userUpdateValidationSchema };
+module.exports = { Users, userValidationSchema, userUpdateValidationSchema, userRegistationSchema };

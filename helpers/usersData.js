@@ -49,11 +49,13 @@ const userFieldReceivedFromFront = [
 ];
 
 const requiredSignUpFields = [
-  'userName',
-  'email',
-  'location',
-  'phone',
-  'password',
+  "name", 
+  "surname", 
+  "email", 
+  "phone", 
+  "company", 
+  "position", 
+  "packages"
 ];
 
 module.exports = {
