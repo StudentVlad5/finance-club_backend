@@ -1,37 +1,38 @@
 const userMainField = [
   '_id',
-  'userName',
+  'name',
   'surname',
   'email',
   // 'password',
-  'location',
   'phone',
+  'company',
+  'position',
   'birthday',
   'avatar',
-  'favorites',
-  'address',
-  'delivery',
-  // "groupAcces",
-  // "role",
-  // 'authToken',
+  'authToken',
+  'packages',
+  'role',
+  'status',
+  'events'
 ];
 
 const userFullField = [
   '_id',
-  'userName',
+  'name',
   'surname',
   'email',
   // 'password',
   'location',
   'phone',
+  'company',
+  'position',
   'birthday',
   'avatar',
-  // "groupAcces",
   'authToken',
-  'favorites',
-  'address',
-  'delivery',
-  // "role",
+  'packages',
+  'role',
+  'status',
+  'events'
 ];
 
 const userFieldReceivedFromFront = [

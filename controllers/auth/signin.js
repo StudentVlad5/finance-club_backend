@@ -12,13 +12,15 @@ const { SECRET_KEY } = process.env;
 
 const signin = async (req, res, next) => {
   const { email, password } = req.body;
-
+  console.log(req.body);
   if (!email || !password) {
     throw new ValidationError("Bad request (invalid request body)");
   }
   const user = await Users.findOne({ email });
   if (!user) throw new UnauthorizedError("Email or password is wrong");
 
+  // const hashPassword = bcrypt.hashSync(email, bcrypt.genSaltSync(10));
+  // console.log(hashPassword);
   const isCorrectPassword = bcrypt.compareSync(password, user.password);
   if (!isCorrectPassword)
     throw new UnauthorizedError("Email or password is wrong");

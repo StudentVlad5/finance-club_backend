@@ -3,8 +3,7 @@ const { auth: ctrl } = require('../../controllers');
 const {
   ctrlWrapper,
   authMiddleware,
-  validation,
-  validateId,
+  validation
 } = require('../../middleWares');
 const { upload } = require('../../middleWares/uploadMiddleware');
 
@@ -16,7 +15,7 @@ const {
 
 const router = express.Router();
 
-router.post('/login', ctrlWrapper(ctrl.signin));
+router.post('/signin', ctrlWrapper(ctrl.signin));
 router.post(
   '/signup',
   validation(userRegistationSchema),
