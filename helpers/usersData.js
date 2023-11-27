@@ -3,17 +3,19 @@ const userMainField = [
   'name',
   'surname',
   'email',
-  // 'password',
+  'password',
+  'location',
   'phone',
   'company',
   'position',
   'birthday',
   'avatar',
-  'authToken',
   'packages',
-  'role',
+  'company',
+  'position',
   'status',
-  'events'
+  'role',
+  'authToken',
 ];
 
 const userFullField = [
@@ -21,42 +23,46 @@ const userFullField = [
   'name',
   'surname',
   'email',
-  // 'password',
+  'password',
   'location',
   'phone',
   'company',
   'position',
   'birthday',
   'avatar',
-  'authToken',
   'packages',
   'role',
   'status',
-  'events'
+  'events',
+  'authToken',
 ];
 
 const userFieldReceivedFromFront = [
-  'userName',
+  'name',
   'surname',
   'email',
-  'location',
+  'password',
   'phone',
   'birthday',
   'avatar',
   'password',
-  'address',
-  'delivery',
-  'id',
+  'company',
+  'position',
+  'packages',
+  'status',
+  'role',
 ];
 
 const requiredSignUpFields = [
-  "name", 
-  "surname", 
-  "email", 
-  "phone", 
-  "company", 
-  "position", 
-  "packages"
+  'name',
+  'surname',
+  'email',
+  'phone',
+  'company',
+  'position',
+  'packages',
+  'status',
+  'role',
 ];
 
 module.exports = {
