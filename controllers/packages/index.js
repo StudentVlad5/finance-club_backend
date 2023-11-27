@@ -1,7 +1,7 @@
 const createPackages = require("./createPackage");
-const getById = require("./getById");
+const get = require("./get");
 
 module.exports = {
   createPackages,
-  getById
+  get
 };

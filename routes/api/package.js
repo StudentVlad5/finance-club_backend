@@ -2,10 +2,10 @@ const express = require("express");
 const { packages } = require("../../controllers");
 const ctrlWrapper = require("../../middleWares/ctrlWrapper");
 
-const {  createPackages, getById } = packages;
+const {  createPackages, get } = packages;
 const router = express.Router();
 
 router.post("/", ctrlWrapper(createPackages));
-router.get("/", ctrlWrapper(getById));
+router.get("/", ctrlWrapper(get));
 
 module.exports = routerPackages = router;
