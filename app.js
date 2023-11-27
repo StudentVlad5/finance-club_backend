@@ -29,7 +29,7 @@ app.use('/uploads', express.static(`${__dirname}/images/avatars`));
 
 app.use('/api/auth', routerAuth);
 app.use('/api/events', routerEvents);
-app.use('/api/package', routerPackages);
+app.use('/api/packages', routerPackages);
 app.use('/api/admin', routerAdmin);
 
 app.use((req, res) => {
