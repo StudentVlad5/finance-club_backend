@@ -6,6 +6,8 @@ const userMainField = [
   'password',
   'location',
   'phone',
+  'company',
+  'position',
   'birthday',
   'avatar',
   'packages',
@@ -13,7 +15,7 @@ const userMainField = [
   'position',
   'status',
   'role',
-  // 'authToken',
+  'authToken',
 ];
 
 const userFullField = [
@@ -24,13 +26,15 @@ const userFullField = [
   'password',
   'location',
   'phone',
+  'company',
+  'position',
   'birthday',
   'avatar',
   'packages',
-  'company',
-  'position',
-  'status',
   'role',
+  'status',
+  'events',
+  'authToken',
 ];
 
 const userFieldReceivedFromFront = [
