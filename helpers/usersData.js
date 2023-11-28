@@ -4,7 +4,6 @@ const userMainField = [
   "surname",
   "email",
   "password",
-  "location",
   "phone",
   "company",
   "position",
@@ -15,6 +14,7 @@ const userMainField = [
   "position",
   "status",
   "role",
+  "events",
   "authToken",
 ];
 
@@ -24,7 +24,6 @@ const userFullField = [
   "surname",
   "email",
   "password",
-  "location",
   "phone",
   "company",
   "position",
