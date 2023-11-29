@@ -13,6 +13,7 @@ const userRegistationSchema = Joi.object({
   company: Joi.string(),
   position: Joi.string(),
 });
+
 const userValidationSchema = Joi.object({
   name: Joi.string().min(3).max(32).required(),
   surname: Joi.string().min(3).max(32),
@@ -27,11 +28,11 @@ const userValidationSchema = Joi.object({
 });
 
 const userUpdateValidationSchema = Joi.object({
-  name: Joi.string().min(3).max(32).required(),
+  name: Joi.string().min(3).max(32),
   surname: Joi.string().min(3).max(32),
-  email: Joi.string().email().required(),
-  password: Joi.string().min(7).max(32),
-  phone: Joi.string().min(1).max(13).required(),
+  email: Joi.string().email(),
+  // password: Joi.string().min(7).max(32),
+  phone: Joi.string().min(1).max(13),
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
   packages: Joi.array(),
@@ -83,13 +84,15 @@ const UsersSchema = new mongoose.Schema(
     },
     packages: {
       type: Object,
-      default: {},
+      default: [],
     },
     status: {
       type: String,
+      default: 'inActive',
     },
     role: {
       type: String,
+      default: 'candidate',
     },
     authToken: {
       type: String,
@@ -108,4 +111,9 @@ const UsersSchema = new mongoose.Schema(
 
 const Users = mongoose.model('users', UsersSchema);
 
-module.exports = { Users, userValidationSchema, userUpdateValidationSchema, userRegistationSchema };
+module.exports = {
+  Users,
+  userValidationSchema,
+  userUpdateValidationSchema,
+  userRegistationSchema,
+};
