@@ -25,25 +25,6 @@ router.post(
 router.post('/logout', ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.logout));
 router.post('/forgotPassword', ctrlWrapper(ctrl.forgotPassword));
 router.post('/changePassword', ctrlWrapper(ctrl.changePassword));
-// router.post(
-//   '/events/:id',
-//   ctrlWrapper(authMiddleware),
-//   validateId,
-//   ctrlWrapper(ctrl.addFavorite)
-// );
-// router.delete(
-//   '/packages/:id',
-//   ctrlWrapper(authMiddleware),
-//   validateId,
-//   ctrlWrapper(ctrl.deleteFavorite)
-// );
-// router.post(
-//   '/catalog/:id',
-//   ctrlWrapper(authMiddleware),
-//   validateId,
-//   ctrlWrapper(ctrl.getFavorites)
-// );
-
 router.post('/', ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 
 router.patch(
