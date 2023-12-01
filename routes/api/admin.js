@@ -1,8 +1,9 @@
 const express = require('express');
-const { events, users } = require('../../controllers');
+const { events, users, packages } = require('../../controllers');
 const {
   userUpdateValidationSchema,
   eventsValidationSchema,
+  packagesValidationSchema
 } = require('../../models');
 
 const {
@@ -76,6 +77,33 @@ router.patch(
   upload.single('avatar'),
   validation(userUpdateValidationSchema),
   ctrlWrapper(users.updateUser)
+);
+
+router.get('/packages', ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
+
+router.post(
+  '/packages/create',
+  ctrlWrapper(authMiddleware),
+  ctrlWrapper(packages.createPackages)
+);
+
+router.get(
+  '/packages/:id',
+  ctrlWrapper(authMiddleware),
+  ctrlWrapper(packages.getPackageById)
+);
+
+router.delete(
+  '/packages/:id',
+  ctrlWrapper(authMiddleware),
+  ctrlWrapper(packages.deletePackage)
+);
+
+router.patch(
+  '/packages/:id',
+  ctrlWrapper(authMiddleware),
+  validation(packagesValidationSchema),
+  ctrlWrapper(packages.updatePackage)
 );
 
 module.exports = routerAdmin = router;
