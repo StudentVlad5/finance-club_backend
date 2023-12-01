@@ -1,13 +1,13 @@
-const { ValidationError } = require("../../helpers");
+const { ValidationError, dataFilterObj } = require("../../helpers");
 const { Packages } = require("../../models");
 
 
 const createPackages = async (req, res, next) => {
+  const newData = dataFilterObj(req.body);
+  console.log('CREATE Package:', newData);
+
   try {
-    const fullData = { ...req.body };
-    console.log("fullData", fullData);
-    const _id = fullData.basket._id;
-    const resCreate = await Events.create(fullData);
+    const resCreate = await Packages.create(newData);
     return res.status(201).json(resCreate);
   } catch (err) {
     throw new ValidationError(err.message);

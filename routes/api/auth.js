@@ -3,7 +3,7 @@ const { auth: ctrl } = require('../../controllers');
 const {
   ctrlWrapper,
   authMiddleware,
-  validation
+  validation,
 } = require('../../middleWares');
 const { upload } = require('../../middleWares/uploadMiddleware');
 
