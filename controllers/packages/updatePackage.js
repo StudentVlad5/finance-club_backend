@@ -4,11 +4,41 @@ let path = require('path');
 
 const updatePackage = async (req, res, next) => {
   const { id } = req.params;
-  const updatedData = dataFilterObj(req.body);
-
-  if (!updatedData.features) {
-    updatedData.features = [];
-  }
+  console.log(req.body)
+  const {
+    titleEn,
+    priceEn,
+    contentEn,
+    featuresEn,
+    titleUa,
+    priceUa,
+    contentUa,
+    featuresUa,
+    titleDe,
+    priceDe,
+    contentDe,
+    featuresDe,
+  } = req.body;
+  const updatedData = {
+    en: {
+      title: titleEn,
+      price: priceEn,
+      content: contentEn,
+      features: featuresEn.toString().split(','),
+    },
+    ua: {
+      title: titleUa,
+      price: priceUa,
+      content: contentUa,
+      features: featuresUa.toString().split(','),
+    },
+    de: {
+      title: titleDe,
+      price: priceDe,
+      content: contentDe,
+      features: featuresDe.toString().split(','),
+    },
+  };
 
   console.log('UPDATE features', updatedData);
 

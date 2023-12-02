@@ -84,12 +84,13 @@ router.get('/packages', ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
 router.post(
   '/packages/create',
   ctrlWrapper(authMiddleware),
+  validation(packagesValidationSchema),
   ctrlWrapper(packages.createPackages)
 );
 
 router.get(
   '/packages/:id',
-  ctrlWrapper(authMiddleware),
+  ctrlWrapper(authMiddleware),  
   ctrlWrapper(packages.getPackageById)
 );
 
