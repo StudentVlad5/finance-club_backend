@@ -4,24 +4,75 @@ require("mongoose-type-email");
 require("mongoose-type-url");
 
 const packagesValidationSchema = Joi.object({
-  title: Joi.string().min(3).max(32).required(),
-  price: Joi.string().min(3).max(32).required(),
-  content: Joi.string().min(1).max(999).required(),
+  titleEn: Joi.string().min(3).max(32).required(),
+  priceEn: Joi.string().min(3).max(32).required(),
+  contentEn: Joi.string().min(1).max(999).required(),
+  featuresEn: Joi.string(),
+  titleUa: Joi.string().min(3).max(32).required(),
+  priceUa: Joi.string().min(3).max(32).required(),
+  contentUa: Joi.string().min(1).max(999).required(),
+  featuresUa: Joi.string(),
+  titleDe: Joi.string().min(3).max(32).required(),
+  priceDe: Joi.string().min(3).max(32).required(),
+  contentDe: Joi.string().min(1).max(999).required(),
+  featuresDe: Joi.string(),
 });
 
 const packagesSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: [true, "Set title of the package"],
+    en: {
+      title: {
+        type: String,
+        required: [true, "Set title of the package"],
+      },
+      price: {
+        type: String,
+        required: [true, "Set price of the package"],
+      },
+      content: {
+        type: String,
+        required: [true, "Set content of the the package"],
+      },
+      features: {
+        type: Array,
+        default: [],
+      },
     },
-    price: {
-      type: String,
-      required: [true, "Set price of the package"],
+    ua: {
+      title: {
+        type: String,
+        required: [true, "Set title of the package"],
+      },
+      price: {
+        type: String,
+        required: [true, "Set price of the package"],
+      },
+      content: {
+        type: String,
+        required: [true, "Set content of the the package"],
+      },
+      features: {
+        type: Array,
+        default: [],
+      },
     },
-    content: {
-      type: String,
-      required: [true, "Set content of the the package"],
+    de: {
+      title: {
+        type: String,
+        required: [true, "Set title of the package"],
+      },
+      price: {
+        type: String,
+        required: [true, "Set price of the package"],
+      },
+      content: {
+        type: String,
+        required: [true, "Set content of the the package"],
+      },
+      features: {
+        type: Array,
+        default: [],
+      },
     },
   },
   {
