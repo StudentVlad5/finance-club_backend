@@ -1,9 +1,10 @@
 const express = require('express');
 const { events, users, packages } = require('../../controllers');
 const {
-  userUpdateValidationSchema,
+  userValidationSchema,
+  userEditValidationSchema,
   eventsValidationSchema,
-  packagesValidationSchema
+  packagesValidationSchema,
 } = require('../../models');
 
 const {
@@ -15,6 +16,7 @@ const {
 
 const router = express.Router();
 
+// ---- EVENTS --- //
 router.get(
   '/events',
   ctrlWrapper(authMiddleware),
@@ -50,12 +52,15 @@ router.patch(
   ctrlWrapper(events.updateEvent)
 );
 
+// ---- USERS --- //
+
 router.get('/users', ctrlWrapper(authMiddleware), ctrlWrapper(users.getUsers));
 
 router.post(
   '/users/create',
   ctrlWrapper(authMiddleware),
   upload.single('avatar'),
+  validation(userValidationSchema),
   ctrlWrapper(users.createUser)
 );
 
@@ -75,9 +80,11 @@ router.patch(
   '/users/:id',
   ctrlWrapper(authMiddleware),
   upload.single('avatar'),
-  validation(userUpdateValidationSchema),
+  validation(userEditValidationSchema),
   ctrlWrapper(users.updateUser)
 );
+
+// ---- PACKAGES --- //
 
 router.get('/packages', ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
 
@@ -90,7 +97,7 @@ router.post(
 
 router.get(
   '/packages/:id',
-  ctrlWrapper(authMiddleware),  
+  ctrlWrapper(authMiddleware),
   ctrlWrapper(packages.getPackageById)
 );
 
