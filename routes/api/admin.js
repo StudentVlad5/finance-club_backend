@@ -26,8 +26,9 @@ router.get(
 router.post(
   '/events/create',
   ctrlWrapper(authMiddleware),
-
-  upload.single('image'),
+  upload.single('imageEn'),
+  upload.single('imageUa'),
+  upload.single('imageDe'),
   validation(eventsValidationSchema),
   ctrlWrapper(events.createEvent)
 );
@@ -47,7 +48,9 @@ router.delete(
 router.patch(
   '/events/:id',
   ctrlWrapper(authMiddleware),
-  upload.single('image'),
+  upload.single('imageEn'),
+  upload.single('imageUa'),
+  upload.single('imageDe'),
   validation(eventsValidationSchema),
   ctrlWrapper(events.updateEvent)
 );
