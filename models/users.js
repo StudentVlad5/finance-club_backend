@@ -15,8 +15,8 @@ const userRegistationSchema = Joi.object({
 });
 
 const userValidationSchema = Joi.object({
-  name: Joi.string().min(3).max(32).required(),
-  surname: Joi.string().min(3).max(32),
+  name: Joi.string().min(1).max(32).required(),
+  surname: Joi.string().min(1).max(32),
   email: Joi.string().email().required(),
   password: Joi.string().min(7).max(32),
   phone: Joi.string().min(1).max(13).required(),
@@ -40,8 +40,8 @@ const userValidationSchema = Joi.object({
 });
 
 const userUpdateValidationSchema = Joi.object({
-  name: Joi.string().min(3).max(32),
-  surname: Joi.string().min(3).max(32),
+  name: Joi.string().min(1).max(32),
+  surname: Joi.string().min(1).max(32),
   email: Joi.string().email(),
   // password: Joi.string().min(7).max(32),
   phone: Joi.string().min(1).max(13),
@@ -55,8 +55,8 @@ const userUpdateValidationSchema = Joi.object({
 });
 
 const userEditValidationSchema = Joi.object({
-  name: Joi.string().min(3).max(32),
-  surname: Joi.string().min(3).max(32),
+  name: Joi.string().min(1).max(32),
+  surname: Joi.string().min(1).max(32),
   email: Joi.string().email(),
   phone: Joi.string().min(1).max(13),
   birthday: Joi.date(),

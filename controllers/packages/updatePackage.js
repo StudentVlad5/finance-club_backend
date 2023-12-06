@@ -4,7 +4,6 @@ let path = require('path');
 
 const updatePackage = async (req, res, next) => {
   const { id } = req.params;
-  console.log(req.body)
   const {
     titleEn,
     priceEn,
@@ -40,12 +39,16 @@ const updatePackage = async (req, res, next) => {
     },
   };
 
-  console.log('UPDATE features', updatedData);
+  console.log('UPDATE PACKAGES', updatedData);
 
   try {
-    const resUpdate = await Packages.findByIdAndUpdate({ _id: id }, updatedData, {
-      new: true,
-    });
+    const resUpdate = await Packages.findByIdAndUpdate(
+      { _id: id },
+      updatedData,
+      {
+        new: true,
+      }
+    );
     const newResponse = dataFilterObj(resUpdate);
     return res.status(201).json(newResponse._doc);
   } catch (err) {
