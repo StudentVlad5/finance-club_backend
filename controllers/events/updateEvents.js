@@ -1,12 +1,14 @@
-const { ValidationError, dataFilterObj } = require('../../helpers');
-const { Events } = require('../../models');
-let path = require('path');
+const { ValidationError, dataFilterObj } = require("../../helpers");
+const { Events } = require("../../models");
+let path = require("path");
 
 const updateEvent = async (req, res, next) => {
   const { id } = req.params;
   const {
-    dateEn,
-    timeEn,
+    image,
+    date,
+    time,
+
     durationEn,
     locationEn,
     titleEn,
@@ -15,10 +17,7 @@ const updateEvent = async (req, res, next) => {
     speakersEn,
     moderatorEn,
     packagesEn,
-    imageEn,
 
-    dateUa,
-    timeUa,
     durationUa,
     locationUa,
     titleUa,
@@ -27,10 +26,7 @@ const updateEvent = async (req, res, next) => {
     speakersUa,
     moderatorUa,
     packagesUa,
-    imageUa,
 
-    dateDe,
-    timeDe,
     durationDe,
     locationDe,
     titleDe,
@@ -39,14 +35,12 @@ const updateEvent = async (req, res, next) => {
     speakersDe,
     moderatorDe,
     packagesDe,
-    imageDe,
   } = req.body;
 
-  // const updatedData = dataFilterObj(req.body);
   const updatedData = {
     en: {
-      date: dateEn,
-      time: timeEn,
+      date: date,
+      time: time,
       duration: durationEn,
       location: locationEn,
       title: titleEn,
@@ -55,11 +49,11 @@ const updateEvent = async (req, res, next) => {
       speakers: speakersEn,
       moderator: moderatorEn,
       packages: packagesEn,
-      image: imageEn,
+      image: image,
     },
     ua: {
-      date: dateUa,
-      time: timeUa,
+      date: date,
+      time: time,
       duration: durationUa,
       location: locationUa,
       title: titleUa,
@@ -68,11 +62,11 @@ const updateEvent = async (req, res, next) => {
       speakers: speakersUa,
       moderator: moderatorUa,
       packages: packagesUa,
-      image: imageUa,
+      image: image,
     },
     de: {
-      date: dateDe,
-      time: timeDe,
+      date: date,
+      time: time,
       duration: durationDe,
       location: locationDe,
       title: titleDe,
@@ -81,17 +75,21 @@ const updateEvent = async (req, res, next) => {
       speakers: speakersDe,
       moderator: moderatorDe,
       packages: packagesDe,
-      image: imageDe,
+      image: image,
     },
   };
 
-  if (req.file?.path) {
-    updatedData.imageEn = path.basename(req.file?.path);
-    updatedData.imageUa = path.basename(req.file?.path);
-    updatedData.imageDe = path.basename(req.file?.path);
-  }
+  const event = await Events.findById({ _id: id });
 
-  console.log('UPDATE EVENT', updatedData);
+  if (req.file?.path) {
+    updatedData["en"].image = path.basename(req.file?.path);
+    updatedData["ua"].image = path.basename(req.file?.path);
+    updatedData["de"].image = path.basename(req.file?.path);
+  } else {
+    updatedData["en"].image = event["en"].image;
+    updatedData["ua"].image = event["en"].image;
+    updatedData["de"].image = event["en"].image;
+  }
 
   try {
     const resUpdate = await Events.findByIdAndUpdate({ _id: id }, updatedData, {

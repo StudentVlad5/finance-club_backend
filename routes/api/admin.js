@@ -1,117 +1,114 @@
-const express = require('express');
-const { events, users, packages } = require('../../controllers');
+const express = require("express");
+const { events, users, packages } = require("../../controllers");
 const {
   userValidationSchema,
   userEditValidationSchema,
   eventsValidationSchema,
   packagesValidationSchema,
-} = require('../../models');
+} = require("../../models");
 
 const {
   ctrlWrapper,
   authMiddleware,
   validation,
   upload,
-} = require('../../middleWares');
+  uploadEvent,
+} = require("../../middleWares");
 
 const router = express.Router();
 
 // ---- EVENTS --- //
 router.get(
-  '/events',
+  "/events",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(events.getEvents)
 );
 
 router.post(
-  '/events/create',
+  "/events/create",
   ctrlWrapper(authMiddleware),
-  upload.single('imageEn'),
-  upload.single('imageUa'),
-  upload.single('imageDe'),
+  uploadEvent.single("image"),
   validation(eventsValidationSchema),
   ctrlWrapper(events.createEvent)
 );
 
 router.get(
-  '/events/:id',
+  "/events/:id",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(events.getById)
 );
 
 router.delete(
-  '/events/:id',
+  "/events/:id",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(events.deleteEvent)
 );
 
 router.patch(
-  '/events/:id',
+  "/events/:id",
   ctrlWrapper(authMiddleware),
-  upload.single('imageEn'),
-  upload.single('imageUa'),
-  upload.single('imageDe'),
+  uploadEvent.single("image"),
   validation(eventsValidationSchema),
   ctrlWrapper(events.updateEvent)
 );
 
 // ---- USERS --- //
 
-router.get('/users', ctrlWrapper(authMiddleware), ctrlWrapper(users.getUsers));
+router.get("/users", ctrlWrapper(authMiddleware), ctrlWrapper(users.getUsers));
 
 router.post(
-  '/users/create',
+  "/users/create",
   ctrlWrapper(authMiddleware),
-  upload.single('avatar'),
+  upload.single("avatar"),
   validation(userValidationSchema),
   ctrlWrapper(users.createUser)
 );
 
 router.get(
-  '/users/:id',
+  "/users/:id",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(users.getUserById)
 );
 
 router.delete(
-  '/users/:id',
+  "/users/:id",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(users.deleteUsers)
 );
 
 router.patch(
-  '/users/:id',
+  "/users/:id",
   ctrlWrapper(authMiddleware),
-  upload.single('avatar'),
+  upload.single("avatar"),
   validation(userEditValidationSchema),
   ctrlWrapper(users.updateUser)
 );
 
 // ---- PACKAGES --- //
 
-router.get('/packages', ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
+router.get("/packages", ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
 
 router.post(
-  '/packages/create',
+  "/packages/create",
   ctrlWrapper(authMiddleware),
   validation(packagesValidationSchema),
   ctrlWrapper(packages.createPackages)
 );
 
 router.get(
-  '/packages/:id',
+  "/packages/:id",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(packages.getPackageById)
 );
 
 router.delete(
-  '/packages/:id',
+  "/packages/:id",
   ctrlWrapper(authMiddleware),
   ctrlWrapper(packages.deletePackage)
 );
 
 router.patch(
-  '/packages/:id',
+  "/packages/:id",
   ctrlWrapper(authMiddleware),
   validation(packagesValidationSchema),
   ctrlWrapper(packages.updatePackage)
