@@ -1,6 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const FILE_DIR = path.join(__dirname, "../images/", "avatars");
+const FILE_DIR = path.join(__dirname, "../images/", "events");
 
 const multerConfig = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -24,6 +24,6 @@ const fileFilter = (req, file, cb) => {
     cb(null, false);
   }
 };
-const upload = multer({ storage: multerConfig, fileFilter: fileFilter });
+const uploadEvent = multer({ storage: multerConfig, fileFilter: fileFilter });
 
-module.exports = { upload };
+module.exports = { uploadEvent };

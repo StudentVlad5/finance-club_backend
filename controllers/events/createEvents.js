@@ -1,12 +1,14 @@
-const { ValidationError, dataFilterObj } = require('../../helpers');
-const { Events } = require('../../models');
-let path = require('path');
+const { ValidationError, dataFilterObj } = require("../../helpers");
+const { Events } = require("../../models");
+let path = require("path");
 
 const createEvent = async (req, res, next) => {
   // const newData = dataFilterObj(req.body);
   const {
-    dateEn,
-    timeEn,
+    image,
+    date,
+    time,
+
     durationEn,
     locationEn,
     titleEn,
@@ -15,10 +17,7 @@ const createEvent = async (req, res, next) => {
     speakersEn,
     moderatorEn,
     packagesEn,
-    imageEn,
 
-    dateUa,
-    timeUa,
     durationUa,
     locationUa,
     titleUa,
@@ -27,10 +26,7 @@ const createEvent = async (req, res, next) => {
     speakersUa,
     moderatorUa,
     packagesUa,
-    imageUa,
 
-    dateDe,
-    timeDe,
     durationDe,
     locationDe,
     titleDe,
@@ -39,13 +35,12 @@ const createEvent = async (req, res, next) => {
     speakersDe,
     moderatorDe,
     packagesDe,
-    imageDe,
   } = req.body;
 
   const newData = {
     en: {
-      date: dateEn,
-      time: timeEn,
+      date: date,
+      time: time,
       duration: durationEn,
       location: locationEn,
       title: titleEn,
@@ -54,11 +49,10 @@ const createEvent = async (req, res, next) => {
       speakers: speakersEn,
       moderator: moderatorEn,
       packages: packagesEn,
-      image: imageEn,
     },
     ua: {
-      date: dateUa,
-      time: timeUa,
+      date: date,
+      time: time,
       duration: durationUa,
       location: locationUa,
       title: titleUa,
@@ -67,11 +61,10 @@ const createEvent = async (req, res, next) => {
       speakers: speakersUa,
       moderator: moderatorUa,
       packages: packagesUa,
-      image: imageUa,
     },
     de: {
-      date: dateDe,
-      time: timeDe,
+      date: date,
+      time: time,
       duration: durationDe,
       location: locationDe,
       title: titleDe,
@@ -80,21 +73,20 @@ const createEvent = async (req, res, next) => {
       speakers: speakersDe,
       moderator: moderatorDe,
       packages: packagesDe,
-      image: imageDe,
     },
   };
-
+  console.log("req.file?.path", req.file?.path);
   if (req.file?.path) {
-    newData.imageEn = path.basename(req.file?.path);
-    newData.imageUa = path.basename(req.file?.path);
-    newData.imageDe = path.basename(req.file?.path);
+    newData["en"].image = path.basename(req.file?.path);
+    newData["ua"].image = path.basename(req.file?.path);
+    newData["de"].image = path.basename(req.file?.path);
   } else {
-    newData.imageEn = path.basename('');
-    newData.imageUa = path.basename('');
-    newData.imageDe = path.basename('');
+    newData["en"].image = path.basename("");
+    newData["ua"].image = path.basename("");
+    newData["de"].image = path.basename("");
   }
 
-  console.log('CREATE EVENT:', newData);
+  console.log("CREATE EVENT:", newData);
 
   try {
     const resCreate = await Events.create(newData);
