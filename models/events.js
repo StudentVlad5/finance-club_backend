@@ -1,7 +1,7 @@
-const Joi = require("joi");
-const mongoose = require("mongoose");
-require("mongoose-type-email");
-require("mongoose-type-url");
+const Joi = require('joi');
+const mongoose = require('mongoose');
+require('mongoose-type-email');
+require('mongoose-type-url');
 
 const eventsValidationSchema = Joi.object({
   date: Joi.date().required(),
@@ -15,7 +15,7 @@ const eventsValidationSchema = Joi.object({
   descriptionEn: Joi.string().min(1).max(9999).required(),
   planEn: Joi.array(),
   speakersEn: Joi.array().required(),
-  moderatorEn: Joi.string(),
+  moderatorEn: Joi.any(),
   packagesEn: Joi.array().required(),
 
   // dateUa: Joi.date().required(),
@@ -26,7 +26,7 @@ const eventsValidationSchema = Joi.object({
   descriptionUa: Joi.string().min(1).max(9999).required(),
   planUa: Joi.array(),
   speakersUa: Joi.array().required(),
-  moderatorUa: Joi.string(),
+  moderatorUa: Joi.any(),
   packagesUa: Joi.array().required(),
   // imageUa: Joi.string().uri(),
 
@@ -38,7 +38,7 @@ const eventsValidationSchema = Joi.object({
   descriptionDe: Joi.string().min(1).max(9999).required(),
   planDe: Joi.array(),
   speakersDe: Joi.array().required(),
-  moderatorDe: Joi.string(),
+  moderatorDe: Joi.any(),
   packagesDe: Joi.array().required(),
   // imageDe: Joi.string().uri(),
 });
@@ -48,27 +48,27 @@ const EventsSchema = new mongoose.Schema(
     en: {
       date: {
         type: Date,
-        required: [true, "Set date"],
+        required: [true, 'Set date'],
       },
       time: {
         type: String,
-        required: [true, "Set time"],
+        required: [true, 'Set time'],
       },
       duration: {
         type: String,
-        required: [true, "Set duration"],
+        required: [true, 'Set duration'],
       },
       location: {
         type: String,
-        required: [true, "Set location"],
+        required: [true, 'Set location'],
       },
       title: {
         type: String,
-        required: [true, "Set title"],
+        required: [true, 'Set title'],
       },
       description: {
         type: String,
-        required: [true, "Set description"],
+        required: [true, 'Set description'],
       },
       plan: {
         type: Array,
@@ -76,7 +76,7 @@ const EventsSchema = new mongoose.Schema(
       },
       speakers: {
         type: Array,
-        required: [true, "Set speakers"],
+        required: [true, 'Set speakers'],
         default: [],
       },
       moderator: {
@@ -84,38 +84,38 @@ const EventsSchema = new mongoose.Schema(
       },
       packages: {
         type: Array,
-        required: [true, "Set packages"],
+        required: [true, 'Set packages'],
         default: [],
       },
       image: {
         type: mongoose.SchemaTypes.Url,
-        default: "",
+        default: '',
       },
     },
     ua: {
       date: {
         type: Date,
-        required: [true, "Set date"],
+        required: [true, 'Set date'],
       },
       time: {
         type: String,
-        required: [true, "Set time"],
+        required: [true, 'Set time'],
       },
       duration: {
         type: String,
-        required: [true, "Set duration"],
+        required: [true, 'Set duration'],
       },
       location: {
         type: String,
-        required: [true, "Set location"],
+        required: [true, 'Set location'],
       },
       title: {
         type: String,
-        required: [true, "Set title"],
+        required: [true, 'Set title'],
       },
       description: {
         type: String,
-        required: [true, "Set description"],
+        required: [true, 'Set description'],
       },
       plan: {
         type: Array,
@@ -123,7 +123,7 @@ const EventsSchema = new mongoose.Schema(
       },
       speakers: {
         type: Array,
-        required: [true, "Set speakers"],
+        required: [true, 'Set speakers'],
         default: [],
       },
       moderator: {
@@ -131,38 +131,38 @@ const EventsSchema = new mongoose.Schema(
       },
       packages: {
         type: Array,
-        required: [true, "Set packages"],
+        required: [true, 'Set packages'],
         default: [],
       },
       image: {
         type: mongoose.SchemaTypes.Url,
-        default: "",
+        default: '',
       },
     },
     de: {
       date: {
         type: Date,
-        required: [true, "Set date"],
+        required: [true, 'Set date'],
       },
       time: {
         type: String,
-        required: [true, "Set time"],
+        required: [true, 'Set time'],
       },
       duration: {
         type: String,
-        required: [true, "Set duration"],
+        required: [true, 'Set duration'],
       },
       location: {
         type: String,
-        required: [true, "Set location"],
+        required: [true, 'Set location'],
       },
       title: {
         type: String,
-        required: [true, "Set title"],
+        required: [true, 'Set title'],
       },
       description: {
         type: String,
-        required: [true, "Set description"],
+        required: [true, 'Set description'],
       },
       plan: {
         type: Array,
@@ -170,7 +170,7 @@ const EventsSchema = new mongoose.Schema(
       },
       speakers: {
         type: Array,
-        required: [true, "Set speakers"],
+        required: [true, 'Set speakers'],
         default: [],
       },
       moderator: {
@@ -178,12 +178,12 @@ const EventsSchema = new mongoose.Schema(
       },
       packages: {
         type: Array,
-        required: [true, "Set packages"],
+        required: [true, 'Set packages'],
         default: [],
       },
       image: {
         type: mongoose.SchemaTypes.Url,
-        default: "",
+        default: '',
       },
     },
   },
@@ -193,6 +193,6 @@ const EventsSchema = new mongoose.Schema(
   }
 );
 
-const Events = mongoose.model("events", EventsSchema);
+const Events = mongoose.model('events', EventsSchema);
 
 module.exports = { Events, eventsValidationSchema };
